@@ -50,19 +50,26 @@ def tens(tx):
     if len(str(tx))==2:
         R = tx % 10
         l = int(tx /10)
-        print(R,l)
         # return convertTex(f) if l <=1  else 
-        return (convertTex(tx)) if l<=1 else convertTex2(R)+tens(l)
+        return (convertTex2(l)) if R<=1 else (convertTex2(l)+tens(R))
 
-    elif len(str(tx))>=3:
+    elif len(str(tx))==3:
         R = tx % 100
         l = int(tx /100)
-        print("Remainder",R, "l" ,l)
-        return tens(l) + tens(R) + 7 if R>0 else tens(l)+7  
+        return tens(l) + tens(R) + 7 if R>0 else tens(l) + 7  
+
+    elif len(str(tx))==4:
+        length = len(str(tx))
+        R = tx % 1000
+        l = int(tx /1000)
+        return tens(l) + tens(R) + 8 if R>0 else tens(l) + 8  
+
+       
+
     elif len(str(tx))==1:
         return convert(tx)
 
 
+print("the sum is ", tens(1565))
 
-print(tens(1001))
 
