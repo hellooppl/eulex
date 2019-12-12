@@ -22,7 +22,7 @@ def convertTex(f):
         12:6,
         13:8,
         14:8,
-        15:8,
+        15:7,
         16:8,
         17:9,
         18:8,
@@ -49,9 +49,8 @@ def tens(tx):
 
     if len(str(tx))==2:
         R = tx % 10
-        l = int(tx /10)
-        # return convertTex(f) if l <=1  else 
-        return (convertTex2(l)) if R<=1 else (convertTex2(l)+tens(R))
+        l = int(tx/10)
+        return (convertTex2(l)) if R<=1 and l>1 else  convertTex(tx) if l==1 else (convertTex2(l)+tens(R)) 
 
     elif len(str(tx))==3:
         R = tx % 100
@@ -69,7 +68,12 @@ def tens(tx):
     elif len(str(tx))==1:
         return convert(tx)
 
+def callR(x):
+    sum = 0
+    for i in range(1,x+1):
+        sum = sum + tens(i)
+        print(sum)
+    return sum
 
-print("the sum is ", tens(1565))
-
+print("the sum is ", callR(1000))
 
